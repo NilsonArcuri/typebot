@@ -5,7 +5,7 @@ services:
     restart: always
     command: server /data
     ports:
-      - "172.17.0.1:9000:9000"
+      - "botweb.me:9090"
     environment:
       MINIO_ROOT_USER: minio
       MINIO_ROOT_PASSWORD: ${ADMIN_PASSWORD}
@@ -39,7 +39,7 @@ services:
     depends_on:
       - typebot-db
     ports:
-      - "172.17.0.1:8484:3000"
+      - "botweb.me:8484"
     # extra_hosts:
     #   - 'host.docker.internal:host-gateway'
     # See https://docs.typebot.io/self-hosting/configuration/builder for more configuration options
@@ -67,7 +67,7 @@ services:
     image: elestio/typebot-viewer:${SOFTWARE_VERSION_TAG}
     restart: always
     ports:
-      - "172.17.0.1:8585:3000"
+      - "botweb.me:8585"
     # See https://docs.typebot.io/self-hosting/configuration/viewer for more configuration options
     environment:
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@typebot-db:5432/typebot
